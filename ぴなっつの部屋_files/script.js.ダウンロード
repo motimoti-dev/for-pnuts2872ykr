@@ -1,0 +1,67 @@
+(function($) {
+  $(function() {
+      var $header = $('#head_wrap');
+      // Nav Fixed
+      $(window).scroll(function() {
+          if ($(window).scrollTop() > 350) {
+              $header.addClass('fixed');
+          } else {
+              $header.removeClass('fixed');
+          }
+      });
+      // Nav Toggle Button
+      $('#nav-toggle, #global-nav ul li a').click(function(){
+          $header.toggleClass('open');
+      });
+  });
+
+})(jQuery);
+
+
+// ゆっくりスクロールする
+$(function(){
+  $('a[href^="#"]').click(function() {
+    var adjust = 0;
+    var speed = 1200;
+    var href= $(this).attr("href");
+    var target = $(href == "#" || href == "" ? 'html' : href);
+    var position = target.offset().top + adjust;
+    $('body,html').animate({scrollTop:position}, speed, 'swing');
+    return false;
+  });
+});
+const CLASSNAME = "-visible";
+const TIMEOUT = 1500;
+const DELAY = 100;
+const $target1 = $(".title");
+const $target2 = $(".sentence");
+
+
+$(window).scroll(function(){
+	$(".passing").each(function(){
+		var imgPos = $(this).offset().top;
+		var scroll = $(window).scrollTop();
+		var windowHeight = $(window).height();
+		if (scroll > imgPos - windowHeight + windowHeight / 4){
+			$(this).addClass('move');
+		}
+	});
+});
+$(window).on('load scroll', function(){
+
+  //itemのinnerをセレクタに指定
+  var elem = $('.boxInner');
+
+  elem.each(function () {
+
+    var isPlay = 'isPlay';
+
+    var elemOffset = $(this).offset().top;
+    var scrollPos = $(window).scrollTop();
+    var wh = $(window).height();
+
+    if(scrollPos > elemOffset - wh + (wh / 4)){
+      $(this).addClass(isPlay);
+    }
+  });
+});
